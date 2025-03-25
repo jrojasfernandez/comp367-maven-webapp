@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9.2-eclipse-temurin-17'
+        }
+    }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-creds')
         IMAGE_NAME = 'jrojasfe/comp367-maven-webapp'
