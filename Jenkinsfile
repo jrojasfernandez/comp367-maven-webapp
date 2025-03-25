@@ -7,22 +7,22 @@ pipeline {
     stages {
         stage('Build Maven Project') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
         stage('Docker Login') {
             steps {
-                bat "docker login -u %DOCKER_HUB_CREDENTIALS_USR% -p %DOCKER_HUB_CREDENTIALS_PSW%"
+                sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Docker Build') {
             steps {
-                bat "docker build -t %IMAGE_NAME% ."
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
         stage('Docker Push') {
             steps {
-                bat "docker push %IMAGE_NAME%"
+                sh 'docker push $IMAGE_NAME'
             }
         }
     }
