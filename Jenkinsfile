@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Welcome to COMP367"'
+                bat 'echo "Welcome to COMP367"'
             }
         }
     }
