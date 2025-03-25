@@ -5,11 +5,6 @@ pipeline {
         IMAGE_NAME = 'jrojasfe/comp367-maven-webapp'
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/jrojasfernandez/comp367-maven-webapp.git'
-            }
-        }
         stage('Build Maven Project') {
             steps {
                 bat 'mvn clean package'
